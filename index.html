@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Annotorious OpenSeadragon Test Page</title>
+    <script type="text/javascript" src="./openseadragon/openseadragon.js"></script>
+    <script type="text/javascript" src="./openseadragon/openseadragon-svg-overlay.js"></script>
+    <script type="text/javascript" src="./openseadragon/annotorious.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/theme-dark/annotorious-dark.css" />
+
+    <script type="text/javascript">
+      window.onload = function() {
+        var viewer = OpenSeadragon({
+          id: "openseadragon",
+          prefixUrl: "openseadragon/images/",
+          showNavigator: false,
+          tileSources: {
+            type: 'legacy-image-pyramid',
+            levels:[{
+                url: '2003rosen1799/0001q.jpg',
+                height: 889,
+                width:  600
+            },{
+                url: '2003rosen1799/0001r.jpg',
+                height: 2201,
+                width:  1485
+            },{
+                url: '2003rosen1799/0001v.jpg',
+                height: 4402,
+                width:  2970
+            }]
+          }
+        });
+        
+        anno.makeAnnotatable(viewer);
+//        anno.setProperties({
+//          outline: 'red'
+//        })
+      }
+    </script>
+    <style>
+      #openseadragon {
+        position:absolute;
+        width:1000px;
+        height:800px;
+      } 
+      
+      #add-annotation-button {
+        position:absolute;
+        top:14px;
+        left:155px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div id="openseadragon"></div>
+    <button id="add-annotation-button" onclick="getValue();">Add Annotation</button>
+    <script type="text/javascript">
+      function getValue(){
+//        var x = document.getElementById("add-annotation-button")
+        anno.activateSelector()
+        console.log(anno)
+      }
+    </script>
+  </body>    
+</html>
